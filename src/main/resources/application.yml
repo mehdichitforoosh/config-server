@@ -1,6 +1,29 @@
+server:
+  port: 8888
 spring:
+  application:
+    name: config-server
   cloud:
     config:
       server:
         git:
           uri: https://github.com/mehdichitforoosh/config-repo.git
+          search-paths: query-service,hrm-service
+      name: config-server
+eureka:
+  instance:
+    prefer-ip-address: true
+    metadata-map:
+      zone: zone1
+  client:
+    prefer-same-zone-eureka: true
+    register-with-eureka: true
+    region: region1
+    service-url:
+      zone1: http://discovery-server-01:8761/eureka/
+    availability-zones:
+      region1: zone1
+
+logging:
+  level:
+    root: ERROR
